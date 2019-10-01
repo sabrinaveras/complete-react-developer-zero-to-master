@@ -12,16 +12,25 @@ class App extends Component{
         };
     }
 
+    /*
+    * When the page is reload the function is called and the
+    * monster's list is updated
+    * */
     componentDidMount() {
-        fetch("https://jsonplaceholder.typicode.com/users")
-           .then(response => response.json())
-           .then(users => this.setState({ monsters: users }))
 
+        // fetch always return Promise, which handle with javascript's asynchronicity
+        fetch("https://jsonplaceholder.typicode.com/users")
+           .then(response => response.json())  // API response
+           .then(users => this.setState({ monsters: users }))  // fill the state with monsters
     }
 
     render() {
         return (
            <div className="App">
+
+               {/* CardList handle with monster's list
+                 monsters is a props
+                */}
                <CardList monsters={this.state.monsters} >
                  {/*{this.state.monsters.map(monster => (
                         <h1 key={monster.id}> {monster.name} </h1>
