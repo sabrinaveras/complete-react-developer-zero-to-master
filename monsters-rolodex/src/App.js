@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { CardList } from "./components/card-list/card-list.component";
+import { SearchBox } from "./components/search-box/search-box.component";
+
+/*
+* About arrow functions and binding in React. A good rule of thumb is this:
+*   Use arrow functions on any class methods you define and aren't part of React (i.e. render(),
+*   componentDidMount()).
+* */
 
 class App extends Component{
     constructor(props){
@@ -11,6 +18,13 @@ class App extends Component{
             monsters: [],
             searchField: ""
         };
+
+        /*
+        * bind - bind is a method on any function that returns a new function where the
+        * context of this is set to whatever we passed to it.
+        * */
+
+        //this.handleChange = this.handleChange.bind(this);
     }
 
     /*
@@ -24,6 +38,14 @@ class App extends Component{
            .then(response => response.json())  // API response
            .then(users => this.setState({ monsters: users }))  // fill the state with monsters
     }
+
+    /*
+    *  bind this to the place where this arrow function was defined in the first place and
+    *  arrow function is our component.
+    * */
+    handleChange = (event) =>{  // if the function is write is away it's not necessary the bind
+        this.setState({ searchField: event.target.value})
+    };
 
     render() {
 
@@ -40,9 +62,13 @@ class App extends Component{
         return (
            <div className="App">
 
-               <input type="search" name="" id=""
+               <h1>Monsters Rolodex</h1>
+
+                <SearchBox placeholder="search monsters"
+                           handleChange={this.handleChange} /> {/* this.handleChange === event => this.handleChange */}
+               {/*<input type="search" name="" id=""
                       placeholder="search monsters"
-                      onChange={event => this.setState({ searchField: event.target.value})} />
+                      onChange={event => this.setState({ searchField: event.target.value})} />*/}
 
                {/* CardList handle with monster's list
                  monsters is a props
