@@ -17,7 +17,6 @@ class App extends Component{
         this.state = {
             monsters: [],
             searchField: "",
-             title: "",
         };
 
         /*
@@ -45,7 +44,7 @@ class App extends Component{
     *  arrow function is our component.
     * */
     handleChange = (event) =>{  // if the function is write is away it's not necessary the bind
-        this.setState({ searchField: event.target.value, title: event.target.value})
+        this.setState({ searchField: event.target.value})
     };
 
     render() {
@@ -54,7 +53,7 @@ class App extends Component{
         * this is equal to const monsters = this.state.monsters
         * and const searchField = this.state.searchField
         * */
-        const { monsters, searchField, title } = this.state;
+        const { monsters, searchField } = this.state;
         const filteredMonsters = monsters.filter(monster =>
             monster.name.toLowerCase().includes(searchField.toLowerCase())
         );
@@ -63,12 +62,12 @@ class App extends Component{
         return (
            <div className="App">
 
-               <h1>{title}</h1>
+               <h1>Monsters Rolodex</h1>
 
                 <SearchBox placeholder="search monsters"
                            handleChange={this.handleChange} /> {/* this.handleChange === event => this.handleChange */}
                {/*<input type="search" name="" id=""
-                      placeholder="search monsters"
+                      placeholder ="search monsters"
                       onChange={event => this.setState({ searchField: event.target.value})} />*/}
 
                {/* CardList handle with monster's list
