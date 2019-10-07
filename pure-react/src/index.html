@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div id="root">React not rendered</div>
+
+
+        <!--
+            These are the objects that the two packages provide into our global javascript namespace
+            once we brought those packages in and thisis pretty much the same thing that we do when we
+            import in react and reactDOM into our files it just gives us access to theses two things.
+        -->
+        <script type="text/javascript" src="https://unpkg.com/react@16.8.6/umd/react.development.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"></script>
+
+
+        <script type="text/javascript">
+            const App = () =>{
+
+                // first element:  create elements is a function on react that builds out those elements
+                //that we saw when we wrote our return.
+
+                // second element: Is an object of any attibutes that I want to add to my div.
+                // example: {class: "card-list"}
+
+                // third element: In any children we want to nest inside of out div.
+
+                return React.createElement("div", {},
+                    React.createElement("h1", {}, "React is rendered!")
+                )
+            }
+
+            ReactDOM.render(React.createElement(App), document.getElementById("root"));
+        </script>
+    </body>
+</html>
