@@ -18,20 +18,54 @@
 
 
         <script type="text/javascript">
-            const App = () =>{
+            //const Person = () =>{
+            //    return React.createElement("div", {},[
+            //    React.createElement("h1", {}, "Sabrina"),
+            //    React.createElement("h1", {}, "Developer"),
+            //    ])
+            //}
 
-                // first element:  create elements is a function on react that builds out those elements
-                //that we saw when we wrote our return.
-
-                // second element: Is an object of any attibutes that I want to add to my div.
-                // example: {class: "card-list"}
-
-                // third element: In any children we want to nest inside of out div.
-
-                return React.createElement("div", {},
-                    React.createElement("h1", {}, "React is rendered!")
-                )
+            const Person = (props) =>{
+                return React.createElement("div", {},[
+                React.createElement("h1", {}, props.name),
+                React.createElement("p", {}, props.occupation),
+                ])
             }
+
+            class App extends React.Component{
+                render(){
+                    return React.createElement("div", {},
+                        [
+                            React.createElement("h1", {}, "React is rendered!"),
+                            //React.createElement(Person),
+                            React.createElement(Person, { name: "Sabrina", occupation: "Developer"}),
+                            React.createElement(Person, { name: "Andrei", occupation: "Instructor"}),
+                            React.createElement(Person, { name: "Ted", occupation: "Actor"}),
+                        ]
+                    )
+                }
+            }
+
+            //const App = () =>{
+            //
+            //    // first element:  create elements is a function on react that builds out those elements
+            //    //that we saw when we wrote our return.
+            //
+            //    // second element: Is an object of any attibutes that I want to add to my div.
+            //    // example: {class: "card-list"}
+            //
+            //    // third element: In any children we want to nest inside of out div.
+            //
+            //    return React.createElement("div", {},
+            //        [
+            //            React.createElement("h1", {}, "React is rendered!"),
+            //            //React.createElement(Person),
+            //            React.createElement(Person, { name: "Sabrina", occupation: "Developer"}),
+            //            React.createElement(Person, { name: "Andrei", occupation: "Instructor"}),
+            //            React.createElement(Person, { name: "Ted", occupation: "Actor"}),
+            //        ]
+            //    )
+            //}
 
             ReactDOM.render(React.createElement(App), document.getElementById("root"));
         </script>
