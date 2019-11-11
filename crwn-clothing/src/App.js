@@ -4,6 +4,7 @@ import './App.css';
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
+import Header from "./components/header/header.component";
 
 /*
 *    <Switch> is unique in that it renders a route exclusively. In contrast, every <Route> that matches the location renders inclusively. Consider these routes:
@@ -21,6 +22,7 @@ import ShopPage from "./pages/shop/shop.component";
 function App() {
      return (
           <div>
+               <Header/>
                <Switch>{/* Renders the first child <Route> or <Redirect> that matches the location. */}
                     {/*<HomePage/>*/}
                     <Route exact path="/" component={HomePage} />
