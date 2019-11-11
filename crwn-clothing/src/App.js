@@ -3,12 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import './App.css';
 
 import HomePage from "./pages/homepage/homepage.component";
-
-const HastPage = () => (
-   <div>
-        <h1>Hats Page</h1>
-   </div>
-);
+import ShopPage from "./pages/shop/shop.component";
 
 /*
 *    <Switch> is unique in that it renders a route exclusively. In contrast, every <Route> that matches the location renders inclusively. Consider these routes:
@@ -30,7 +25,7 @@ function App() {
                     {/*<HomePage/>*/}
                     <Route exact path="/" component={HomePage} />
 
-                    <Route path="/hats" component={HastPage} />
+                    <Route path="/shop" component={ShopPage} />
                </Switch>
           </div>
      );
