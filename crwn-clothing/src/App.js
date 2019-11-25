@@ -7,7 +7,7 @@ import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 /*
 *    <Switch> is unique in that it renders a route exclusively. In contrast, every <Route> that matches the location renders inclusively. Consider these routes:
@@ -33,12 +33,22 @@ class App extends React.Component{
 
      unsubscribeFromAuth = null;
 
+     // Check if the user is login with Google account
      componentDidMount() {
-          this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-               this.setState({ currentUser: user });
+          this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
+               // await createUserProfileDocument(user);
 
-               console.log(user);
-          })
+               if(userAuth){
+                    const userRef = await createUserProfileDocument(userAuth);
+
+                    await userRef.onSnapshot(snapshot => {
+                         this.setState({ currentUser: { id: snapshot.id, ...snapshot.data() } }, () => {
+                              // console.log(this.state);
+                         })
+                    });
+               }
+               this.setState({ currentUser: userAuth });
+          });
      };
 
      componentWillUnmount() {
