@@ -1,6 +1,6 @@
 import React from "react";
 
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -21,10 +21,20 @@ class SignIn extends React.Component{
      *  Submit function that calls our method handleSubmit which for now will simply prevent the default submit action
      *  from firing because we want full control over exactly what this summit is going to do.
      * */
-     handleSubmit = event =>{
+     handleSubmit = async event =>{
           event.preventDefault();
-
-          this.setState({email: "", password: ""})
+          
+          const { email, password } = this.state;
+          
+          try{
+              
+              await auth.signInWithEmailAndPassword(email, password);
+    
+              this.setState({email: "", password: ""})
+              
+          }catch (error) {
+              console.log(error)
+          }
      };
 
      /*

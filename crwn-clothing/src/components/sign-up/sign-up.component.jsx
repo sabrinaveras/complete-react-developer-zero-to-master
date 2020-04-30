@@ -52,7 +52,6 @@ class SignUp extends React.Component{
 			
 			this.setState({displayName: "", email: "", password: "", confirmPassword: ""});
 			
-			
 		}catch (error) {
 			console.log(error)
 		}
