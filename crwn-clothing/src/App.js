@@ -53,6 +53,13 @@ class App extends React.Component{
      }
 
      unsubscribeFromAuth = null;
+     
+     /*
+     *    Is it use to firing a fetch to the back end to fetch data. But this is only a one off thing. Once the code
+     *    calls fetch it won't call fetch again until a component did mount lifecycle method gets called again but we
+     *    don't want to remount our app we just want to always know when firebase has realized that the authentication
+     *    state has changed.
+     * */
 
      // Check if the user is login with Google account
      componentDidMount() {
@@ -66,7 +73,9 @@ class App extends React.Component{
                     await userRef.onSnapshot(snapshot => {
                          this.setState({ currentUser: { id: snapshot.id, ...snapshot.data() } }, () => {
                               // console.log(this.state);
-                         })
+                         });
+                         
+                         console.log(this.state);
                     });
                }
                this.setState({ currentUser: userAuth });
