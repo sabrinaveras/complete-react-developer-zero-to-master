@@ -1,4 +1,7 @@
 import React from "react";
+
+import { connect } from "react-redux";
+
 import { Link } from "react-router-dom";
 
 import { auth } from "../../firebase/firebase.utils";
@@ -39,4 +42,31 @@ const Header = ({ currentUser }) => (
    </div>
 );
 
-export default Header;
+
+//  This naming can be anything but mapStateToProps is standard with redux codebases
+const mapStateToProps = state =>({
+   currentUser: state.user.currentUser
+});
+
+
+
+/*
+*   We have import this function called connect() from react-redux, connect is a higher order component that lets us modify
+*   our component to have access to things related to redux.
+*
+*   Now as we remember higher the components are just functions that take components as arguments and then return you a new
+*   souped up component.
+*
+* */
+
+export default connect(mapStateToProps)(Header);
+
+/*
+*   So what's we'll do with connect() is we are actually going to pass it to functions.
+*
+*   The second one being optional and then that'll give us back another higher component that we pass it.
+*
+*   Our Header now what if it that we pass as the first argument of connect(). It's going to be the function that allows
+*   us to access the states with the state being are reducer our root producer to be specific.
+*
+* */

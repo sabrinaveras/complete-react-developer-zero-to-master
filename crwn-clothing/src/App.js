@@ -1,5 +1,9 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
+
 import './App.css';
 
 import HomePage from "./pages/homepage/homepage.component";
@@ -44,13 +48,13 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 class App extends React.Component{
      
-     constructor(props){
-          super(props);
-
-          this.state = {
-               currentUser: null
-          };
-     }
+     // constructor(props){
+     //      super(props);
+	 //
+     //      this.state = {
+     //           currentUser: null
+     //      };
+     // }
 
      unsubscribeFromAuth = null;
      
@@ -63,6 +67,8 @@ class App extends React.Component{
 
      // Check if the user is login with Google account
      componentDidMount() {
+     	
+     	const { setCurrentUser } = this.props;
           
           this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
                // await createUserProfileDocument(user);
@@ -71,12 +77,13 @@ class App extends React.Component{
                     const userRef = await createUserProfileDocument(userAuth);
 
                     await userRef.onSnapshot(snapshot => {
-                         this.setState({ currentUser: { id: snapshot.id, ...snapshot.data() } }, () => {
-                              // console.log(this.state);
-                         });
+                    	setCurrentUser({ id: snapshot.id, ...snapshot.data( )})
+                         // this.setState({ currentUser: { id: snapshot.id, ...snapshot.data() } }, () => {
+                         //      // console.log(this.state);
+                         // });
                     });
                }
-               this.setState({ currentUser: userAuth });
+	          setCurrentUser( userAuth );
           });
           
      };
@@ -92,7 +99,7 @@ class App extends React.Component{
           return (
                <div>
                     {/* nav bar */}
-                    <Header currentUser={this.state.currentUser} />
+                    <Header/> {/* currentUser={this.state.currentUser} */}
                     
                     <Switch>{/* Renders the first child <Route> or <Redirect> that matches the location. */}
                     
@@ -110,4 +117,8 @@ class App extends React.Component{
      
 }
 
-export default App;
+const mapDispatchToProps = dispatch =>({
+	setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(App);
