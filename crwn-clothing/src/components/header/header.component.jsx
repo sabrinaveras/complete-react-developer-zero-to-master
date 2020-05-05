@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 import { auth } from "../../firebase/firebase.utils";
 
+import CartIcon from "../cart-icon/cart-icon.component";
+
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 /*
 *   This is a new special syntax when importing SVG in React. The ReactComponent import name is special and tells Create
@@ -38,6 +40,8 @@ const Header = ({ currentUser }) => (
                      :
                      <Link to="/signin" className="option">SIGN IN</Link>
              }
+             
+             <CartIcon/>
         </div>
    </div>
 );
