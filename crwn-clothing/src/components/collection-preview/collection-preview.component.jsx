@@ -4,7 +4,7 @@ import CollectionItem from "../collection-item/collection-item.component";
 
 import "./collection-preview.styles.scss";
 
-const ColletionPreview = ({ title, items }) => (
+const CollectionPreview = ({ title, items }) => (
    
    <div className="collection-preview">
        
@@ -14,7 +14,7 @@ const ColletionPreview = ({ title, items }) => (
              {
                   items
                      .filter((item, idx) => idx < 4) //  limit the sample to four instead of the entire collection
-                     .map((item) => (
+                     .map(item => (
                      <CollectionItem key={item.id} item={item} />
                   ))
              }
@@ -24,4 +24,4 @@ const ColletionPreview = ({ title, items }) => (
    
 );
 
-export default ColletionPreview;
+export default CollectionPreview;
