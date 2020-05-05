@@ -14,8 +14,8 @@ const ColletionPreview = ({ title, items }) => (
              {
                   items
                      .filter((item, idx) => idx < 4) //  limit the sample to four instead of the entire collection
-                     .map(({id, ...otherItemProps}) => (
-                     <CollectionItem key={id} {...otherItemProps} />
+                     .map((item) => (
+                     <CollectionItem key={item.id} item={item} />
                   ))
              }
         </div>
