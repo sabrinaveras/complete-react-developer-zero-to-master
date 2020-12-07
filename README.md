@@ -1,4 +1,4 @@
-Complete React Developer in 2021 (w/ Redux, Hooks, GraphQL)
+# Complete React Developer in 2021 (w/ Redux, Hooks, GraphQL)
 
 What I will learn:
 
