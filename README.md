@@ -37,3 +37,5 @@ What I will learn:
   - Handling online payments with Stripe API
   
   - Using the latest ES6/ES7/ES8/ES9/ES10 JavaScript to write clean code
+
+link: https://www.udemy.com/course/complete-react-developer-zero-to-mastery/
